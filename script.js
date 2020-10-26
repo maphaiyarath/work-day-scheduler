@@ -1,6 +1,8 @@
+// good ol' variables
 var currentHour = moment().format("HH");
 var timeBlocks = $(".time-block");
 var saveButton = $(".saveBtn");
+var desEl = $(".description");
 var events = [];
 
 // WHEN I open the planner THEN the current day is displayed at the top of the calendar
@@ -11,6 +13,7 @@ timeBlocks.each(function() {
     var blockHour = $(this).data("hour");
     var blockDes = $(this).children(".description");
     
+    // past, present, and future
     if (blockHour < currentHour) {
         blockDes.addClass("past");
     } else if (blockHour === currentHour) {
@@ -25,7 +28,8 @@ saveButton.click(function() {
     var blockHour = $(this).parent('.time-block').data("hour");
     var desText = $.trim($(this).siblings('.description').val());
 
-    if (desText === '') {
+    // if no text, you don't have to do anything, unless something was already saved
+    if (desText === '' && !events.some(i => i.hour === blockHour)) {
         return;
     }
 
@@ -34,6 +38,7 @@ saveButton.click(function() {
         'event': desText
     };
 
+    // just in case an old event needs to be overwritten
     if (events.some(i => i.hour === blockHour)) {
         var oldDes = events.find(({hour}) => hour === blockHour);
         oldDes.event = desText;
@@ -53,30 +58,23 @@ function init() {
     }
 };
 
+
 function showEvents() {
     var storedEvents = JSON.parse(localStorage.getItem('events'));
 
     if (storedEvents !== null) {
         events = storedEvents;
     }
+
+    // match up the hours and the stored events, if any
+    desEl.each(function() {
+        var blockHour = $(this).parent('.time-block').data("hour");
+        var desItem = events.find(({hour}) => hour === blockHour);
+
+        if (desItem)
+            this.value = desItem.event;
+    });
 }
 
 init();
 showEvents();
-
-/* function showScores() {
-    for (var i = 0; i < scores.length; i++) {
-        var scoreItem = scores[i];
-
-        var tr = document.createElement("tr");
-        scoresEl.append(tr);
-        
-        var tdInitial = document.createElement("td");
-        tdInitial.textContent = scoreItem.initials;
-        tr.append(tdInitial);
-
-        var tdScore = document.createElement("td");
-        tdScore.textContent = scoreItem.score;
-        tr.append(tdScore);
-    }
-} */
