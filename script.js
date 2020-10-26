@@ -1,13 +1,3 @@
-/*
-
-WHEN I click into a time block
-THEN I can enter an event
-WHEN I click the save button for that time block
-THEN the text for that event is saved in local storage
-WHEN I refresh the page
-THEN the saved events persist
-*/
-
 // WHEN I open the planner THEN the current day is displayed at the top of the calendar
 $("#currentDay").html(moment().format("dddd, MMMM Do,  YYYY"));
 
@@ -28,12 +18,6 @@ timeBlocks.each(function() {
     }
 });
 
-/*
-$('.testimonial').each(function(){
-    //if statement here 
-    // use $(this) to reference the current div in the loop
-    //you can try something like...
-    if(condition){
-    }
- });
-*/
+// WHEN I click the save button for that time block THEN the text for that event is saved in local storage
+
+// WHEN I refresh the page THEN the saved events persist
