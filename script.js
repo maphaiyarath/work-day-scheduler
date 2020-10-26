@@ -24,7 +24,6 @@ timeBlocks.each(function() {
 saveButton.click(function() {
     var blockHour = $(this).parent('.time-block').data("hour");
     var desText = $.trim($(this).siblings('.description').val());
-    console.log(desText);
 
     if (desText === '') {
         return;
@@ -35,7 +34,12 @@ saveButton.click(function() {
         'event': desText
     };
 
-    events.push(des);
+    if (events.some(i => i.hour === blockHour)) {
+        var oldDes = events.find(({hour}) => hour === blockHour);
+        oldDes.event = desText;
+    } else {
+        events.push(des);
+    }
 
     localStorage.setItem('events', JSON.stringify(events));
 });
