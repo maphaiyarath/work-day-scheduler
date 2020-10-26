@@ -13,11 +13,13 @@ timeBlocks.each(function() {
     var blockHour = $(this).data("hour");
     var blockDes = $(this).children(".description");
     
+    console.log(blockHour + ' + ' + currentHour);
+
     // past, present, and future
-    if (blockHour < currentHour) {
-        blockDes.addClass("past");
-    } else if (blockHour === currentHour) {
+    if (blockHour == currentHour) {
         blockDes.addClass("present");
+    } else if (blockHour < currentHour) {
+        blockDes.addClass("past");
     } else {
         blockDes.addClass("future");
     }
