@@ -11,12 +11,12 @@ You can see the deployed app [here](https://maphaiyarath.github.io/work-day-sche
 * [Badges](#badges)
 
 ## Description
+This is a simple calendar application that allows the user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
+
+Further development could involve the ability to clear events with a button. 
 
 ## Installation
-This project uses [Moment.js](https://momentjs.com/). Install it by running the following command:
-```
-npm install moment
-```
+n/a
 
 ## Usage
 n/a
