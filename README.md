@@ -1,5 +1,7 @@
 # Third-Party APIs: Work Day Scheduler
 
+![Work Day Scheduler App](./og-scheduler.png)
+
 You can see the deployed app [here](https://maphaiyarath.github.io/work-day-scheduler).
 
 ## Table of Contents
